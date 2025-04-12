@@ -17,6 +17,31 @@ public class RestaurantService
         this.restaurantRepository = restaurantRepository;
     }
 
+    public Restaurant register(Restaurant restaurant)
+    {
+        Restaurant existing = restaurantRepository.findByEmail(restaurant.getEmail());
+        if (existing != null)
+        {
+            throw new RuntimeException("Email already registered.");
+        }
+        return restaurantRepository.save(restaurant);
+    }
+
+    public Restaurant login(String email, String password)
+    {
+        Restaurant restaurant = restaurantRepository.findByEmail(email);
+        if (restaurant == null)
+        {
+            throw new RuntimeException("Invalid Email.");
+        }
+
+        if (!restaurant.getPassword().equals(password))
+        {
+            throw new RuntimeException("Invalid Password.");
+        }
+        return restaurant;
+    }
+
     public List<Restaurant> getAllRestaurants()
     {
         return restaurantRepository.findAll();

@@ -7,29 +7,48 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Restaurant
 {
     @Id
-    private int id;
-    private String name;
-    private String address;
+    private String id;
 
-    // Getters and Setters
-    public int getId()
+    private String restaurantName;
+    private String address;
+    private String managerName;
+    private String email;
+    private String phone;
+    private String password;
+
+    public Restaurant()
+    {
+    }
+
+    public Restaurant(String restaurantName, String address, String managerName,
+                      String email, String phone, String password)
+    {
+        this.restaurantName = restaurantName;
+        this.address = address;
+        this.managerName = managerName;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
+    public String getId()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId(String id)
     {
         this.id = id;
     }
 
-    public String getName()
+    public String getRestaurantName()
     {
-        return name;
+        return restaurantName;
     }
 
-    public void setName(String name)
+    public void setRestaurantName(String restaurantName)
     {
-        this.name = name;
+        this.restaurantName = restaurantName;
     }
 
     public String getAddress()
@@ -41,5 +60,47 @@ public class Restaurant
     {
         this.address = address;
     }
-}
 
+    public String getManagerName()
+    {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName)
+    {
+        this.managerName = managerName;
+    }
+
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    public String getPhone()
+    {
+        return phone;
+    }
+
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    // Getters and Setters
+    // (Use Lombok @Data if you prefer, or generate them via IDE)
+}
