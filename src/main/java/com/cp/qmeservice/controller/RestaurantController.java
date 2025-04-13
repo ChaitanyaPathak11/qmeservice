@@ -60,7 +60,7 @@ public class RestaurantController
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable int id)
+    public ResponseEntity<Restaurant> getRestaurantById(@PathVariable String id)
     {
         return restaurantService.getRestaurantById(id)
                 .map(restaurant -> ResponseEntity.ok(restaurant))
@@ -80,7 +80,7 @@ public class RestaurantController
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRestaurant(@PathVariable int id)
+    public ResponseEntity<Void> deleteRestaurant(@PathVariable String id)
     {
         restaurantService.deleteRestaurant(id);
         return ResponseEntity.ok().build();

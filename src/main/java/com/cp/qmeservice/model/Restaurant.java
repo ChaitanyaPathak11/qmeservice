@@ -16,21 +16,6 @@ public class Restaurant
     private String phone;
     private String password;
 
-    public Restaurant()
-    {
-    }
-
-    public Restaurant(String restaurantName, String address, String managerName,
-                      String email, String phone, String password)
-    {
-        this.restaurantName = restaurantName;
-        this.address = address;
-        this.managerName = managerName;
-        this.email = email;
-        this.phone = phone;
-        this.password = password;
-    }
-
     public String getId()
     {
         return id;

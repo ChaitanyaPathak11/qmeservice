@@ -11,22 +11,29 @@ public class AuthService
     @Autowired
     private UserRepository userRepository;
 
-    public String signUp(User user)
-    {
-        if (userRepository.existsByEmail(user.getEmail()))
-        {
-            return "Email already in use";
-        }
 
-        userRepository.save(user);
-        return "Sign up successful!";
+    public User signUp(User user)
+    {
+        User existing = userRepository.findByEmail(user.getEmail());
+        if (existing != null)
+        {
+            throw new RuntimeException("Email already registered.");
+        }
+        return userRepository.save(user);
     }
 
-    public String signIn(String email, String rawPassword)
+    public User signIn(String email, String password)
     {
-        return userRepository.findByEmail(email)
-                .filter(user -> rawPassword.equals(user.getPassword()))
-                .map(user -> "Login successful!")
-                .orElse("Invalid email or password");
+        User user = userRepository.findByEmail(email);
+        if (user == null)
+        {
+            throw new RuntimeException("Invalid Email.");
+        }
+
+        if (!user.getPassword().equals(password))
+        {
+            throw new RuntimeException("Invalid Password.");
+        }
+        return user;
     }
 }

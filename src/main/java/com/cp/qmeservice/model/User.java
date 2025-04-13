@@ -12,19 +12,26 @@ public class User
 {
     @Id
     private String id;
-
     private String firstName;
     private String lastName;
-
     private String dob;
     private String email;
-    private String mobile;
+    private String phone;
     private String password;
-
     @CreatedDate
     private Instant createdAt;
     @LastModifiedDate
     private Instant updatedAt;
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
 
     public String getFirstName()
     {
@@ -66,14 +73,14 @@ public class User
         this.email = email;
     }
 
-    public String getMobile()
+    public String getPhone()
     {
-        return mobile;
+        return phone;
     }
 
-    public void setMobile(String mobile)
+    public void setPhone(String phone)
     {
-        this.mobile = mobile;
+        this.phone = phone;
     }
 
     public String getPassword()

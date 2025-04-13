@@ -16,13 +16,13 @@ public class AuthController
     private AuthService authService;
 
     @PostMapping("/signup")
-    public String signUp(@RequestBody User user)
+    public User signUp(@RequestBody User user)
     {
         return authService.signUp(user);
     }
 
     @PostMapping("/signin")
-    public String signIn(@RequestBody Map<String, String> body)
+    public User signIn(@RequestBody Map<String, String> body)
     {
         String email = body.get("email");
         String password = body.get("password");

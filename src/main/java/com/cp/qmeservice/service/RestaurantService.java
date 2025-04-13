@@ -47,7 +47,7 @@ public class RestaurantService
         return restaurantRepository.findAll();
     }
 
-    public Optional<Restaurant> getRestaurantById(int id)
+    public Optional<Restaurant> getRestaurantById(String id)
     {
         return restaurantRepository.findById(id);
     }
@@ -62,7 +62,7 @@ public class RestaurantService
         return restaurantRepository.save(restaurant);
     }
 
-    public void deleteRestaurant(int id)
+    public void deleteRestaurant(String id)
     {
         restaurantRepository.deleteById(id);
     }
