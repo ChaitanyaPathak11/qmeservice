@@ -14,6 +14,7 @@ public class QueueEntry
     private String userId; // NEW
 
     private String restaurantId;
+    private Restaurant restaurant;
     private String name;
     private String phone;
     private String status; // pending, allotted, removed
@@ -98,5 +99,15 @@ public class QueueEntry
     public void setPeopleCount(int peopleCount)
     {
         this.peopleCount = peopleCount;
+    }
+
+    public Restaurant getRestaurant()
+    {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant)
+    {
+        this.restaurant = restaurant;
     }
 }

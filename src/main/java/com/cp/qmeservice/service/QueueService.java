@@ -2,6 +2,7 @@ package com.cp.qmeservice.service;
 
 import com.cp.qmeservice.model.QueueEntry;
 import com.cp.qmeservice.repository.QueueRepository;
+import com.cp.qmeservice.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ public class QueueService
 
     @Autowired
     private QueueRepository queueRepository;
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
     public List<QueueEntry> getTodayQueue(String restaurantId)
     {
@@ -45,7 +48,16 @@ public class QueueService
 
     public List<QueueEntry> getUserJoinedQueues(String userId)
     {
-        return queueRepository.findByUserId(userId);
+        var entries = queueRepository.findByUserId(userId);
+
+        for (QueueEntry entry : entries)
+        {
+            var restaurant = restaurantRepository.findById(entry.getRestaurantId()).get();
+            entry.setRestaurant(restaurant);
+        }
+
+        return entries;
+
     }
 
 
