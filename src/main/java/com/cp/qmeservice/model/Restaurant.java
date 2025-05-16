@@ -85,7 +85,4 @@ public class Restaurant
     {
         this.password = password;
     }
-
-    // Getters and Setters
-    // (Use Lombok @Data if you prefer, or generate them via IDE)
 }
