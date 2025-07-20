@@ -2,14 +2,19 @@ package com.cp.qmeservice.service;
 
 import com.cp.qmeservice.model.User;
 import com.cp.qmeservice.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
 
 @Service
 public class AuthService
 {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public AuthService(UserRepository userRepository)
+    {
+        this.userRepository = userRepository;
+    }
 
 
     public User signUp(User user)
@@ -19,6 +24,7 @@ public class AuthService
         {
             throw new RuntimeException("Email already registered.");
         }
+        user.setCreatedAt(Instant.now());
         return userRepository.save(user);
     }
 

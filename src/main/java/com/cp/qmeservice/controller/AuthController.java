@@ -2,7 +2,6 @@ package com.cp.qmeservice.controller;
 
 import com.cp.qmeservice.model.User;
 import com.cp.qmeservice.service.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -12,8 +11,12 @@ import java.util.Map;
 @CrossOrigin
 public class AuthController
 {
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
+
+    public AuthController(AuthService authService)
+    {
+        this.authService = authService;
+    }
 
     @PostMapping("/signup")
     public User signUp(@RequestBody User user)

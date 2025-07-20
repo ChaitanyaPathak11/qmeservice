@@ -2,7 +2,6 @@ package com.cp.qmeservice.controller;
 
 import com.cp.qmeservice.model.QueueEntry;
 import com.cp.qmeservice.service.QueueService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +14,12 @@ import java.util.List;
 public class QueueController
 {
 
-    @Autowired
-    private QueueService queueService;
+    private final QueueService queueService;
+
+    public QueueController(QueueService queueService)
+    {
+        this.queueService = queueService;
+    }
 
     @GetMapping("/{restaurantId}/today")
     public List<QueueEntry> getTodayQueue(@PathVariable String restaurantId)
@@ -37,7 +40,8 @@ public class QueueController
         {
             QueueEntry saved = queueService.joinQueue(entry);
             return ResponseEntity.ok(saved);
-        } catch (RuntimeException e)
+        }
+        catch (RuntimeException e)
         {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
